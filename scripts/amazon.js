@@ -102,7 +102,10 @@ document.querySelector('.js-cart-quantity').innerHTML = Number(quantity);
 
 //15a.
 let tdate = dayjs();
-// let newdate = tdate.add(5 , 'days');
+let newdate = tdate.add('M' , 'days');
 
 let formatdate = tdate.format('D' + '/M' + '/YYYY');
 document.querySelector('.date').innerHTML = `Date : ${formatdate}`;
+
+let today = dayjs().format('dddd');
+alert(`Day : ${today}`);
