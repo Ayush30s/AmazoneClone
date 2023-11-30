@@ -108,4 +108,8 @@ let formatdate = tdate.format('D' + '/M' + '/YYYY');
 document.querySelector('.date').innerHTML = `Date : ${formatdate}`;
 
 let today = dayjs().format('dddd');
-alert(`Day : ${today}`);
+if(today === 'Sunday' || today === 'Saturday') {
+    alert(`Day : ${today}`);
+} else {
+    alert('No Holiday');
+}
