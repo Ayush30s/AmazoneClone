@@ -3,10 +3,6 @@ import {products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
-//15a.
-let tdate = dayjs();
-let newdate = tdate.add(5 , 'days');
-console.log(newdate)
 
 let productsHTML = ' ';
 
@@ -103,3 +99,10 @@ document.querySelectorAll('.js-add-to-cart')
 
 let quantity = localStorage.getItem('q');
 document.querySelector('.js-cart-quantity').innerHTML = Number(quantity);
+
+//15a.
+let tdate = dayjs();
+// let newdate = tdate.add(5 , 'days');
+
+let formatdate = tdate.format('D' + '/M' + '/YYYY');
+document.querySelector('.date').innerHTML = `Date : ${formatdate}`;
