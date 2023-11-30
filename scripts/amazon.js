@@ -111,5 +111,5 @@ let today = dayjs().format('dddd');
 if(today === 'Sunday' || today === 'Saturday') {
     alert(`Day : ${today}`);
 } else {
-    alert('No Holiday');
+    alert('No Holiday0')
 }
