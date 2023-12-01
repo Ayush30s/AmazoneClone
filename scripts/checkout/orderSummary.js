@@ -6,6 +6,21 @@ import { renderPaymentSummary } from "./paymentSummary.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { updatecheckoutHeader } from "../../data/cart.js";
 
+
+
+function Showdate(deliveryOption) {
+    const today = dayjs();
+    const deliveryDate = today.add(
+        deliveryOption.deliveryDays,
+        'days'
+    );
+    const dateString = deliveryDate.format(
+        'dddd, MMMM D'
+    );
+
+    return dateString;
+}
+
 export function renderOrderSummary() {
 
     let cartSummaryHTML = '';
@@ -20,14 +35,8 @@ export function renderOrderSummary() {
 
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-    const today = dayjs();
-    const deliveryDate = today.add(
-        deliveryOption.deliveryDays,
-        'days'
-    );
-    const dateString = deliveryDate.format(
-        'dddd, MMMM D'
-    );
+    let dateString = Showdate(deliveryOption);
+
 
     cartSummaryHTML += `
     <div class="cart-item-container  
@@ -76,14 +85,9 @@ function deliveryOptionsHTML(matchingProduct,cartItem) {
     let html = '';
 
     deliveryOptions.forEach((deliveryOption) => {
-        const today = dayjs();
-        const deliveryDate = today.add(
-            deliveryOption.deliveryDays,
-            'days'
-        );
-        const dateString = deliveryDate.format(
-            'dddd, MMMM D'
-        );
+        
+        let dateString = Showdate(deliveryOption);
+
         const pricestring = deliveryOption.priceCents === 0
             ? 'Free' 
             : `${formatCurrency(deliveryOption.
@@ -144,7 +148,7 @@ document.querySelectorAll('.delete-quantity-link')
     });
 
 
-updatecheckoutHeader();
+    updatecheckoutHeader();
 
 document.querySelectorAll('.update-quantity-link')
 .forEach((link) => {
