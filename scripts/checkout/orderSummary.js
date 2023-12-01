@@ -4,6 +4,7 @@ import { deliveryOptions , getDeliveryOption} from "../../data/deliveryOptions.j
 import formatCurrency from "../utils/money.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
+import { updatecheckoutHeader } from "../../data/cart.js";
 
 export function renderOrderSummary() {
 
@@ -142,9 +143,8 @@ document.querySelectorAll('.delete-quantity-link')
         });
     });
 
-let cartQuantityAfterDeletion = Number(localStorage.getItem('q'));
-document.querySelector('.js-home-link')
-    .innerHTML = `${cartQuantityAfterDeletion} Items`;
+
+updatecheckoutHeader();
 
 document.querySelectorAll('.update-quantity-link')
 .forEach((link) => {
@@ -203,8 +203,7 @@ document.querySelectorAll('.update-quantity-link')
             //save the new cart to storage
             saveToStorage();
 
-            let checkoutValue =  Number(localStorage.getItem('q'));
-            document.querySelector('.js-home-link').innerHTML =` ${Number(checkoutValue)} Items`;
+            updatecheckoutHeader();
         }
 
         document.querySelector('.save-quantity').addEventListener('click' , ()=> {
@@ -214,9 +213,7 @@ document.querySelectorAll('.update-quantity-link')
     });
 });
 
-let cartQuantityAfterUpdation = localStorage.getItem('q');
-document.querySelector('.js-home-link')
-    .innerHTML = `${cartQuantityAfterUpdation} Items`;
+updatecheckoutHeader();
 
 document.querySelectorAll('.js-delivery-option')
     .forEach((element) => {

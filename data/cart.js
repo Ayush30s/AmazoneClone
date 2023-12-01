@@ -111,3 +111,8 @@ export function updateDeliveryOption(productId , deliveryOptionId) {
     //  save the changes to storage
     saveToStorage();
 }
+
+export function updatecheckoutHeader() {
+    let cartQuantity = Number(localStorage.getItem('q'));
+    document.querySelector('.js-home-link').innerHTML = `${cartQuantity} Items`;
+}
