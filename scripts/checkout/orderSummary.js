@@ -10,10 +10,15 @@ import { updatecheckoutHeader } from "../../data/cart.js";
 
 function Showdate(deliveryOption) {
     const today = dayjs();
-    const deliveryDate = today.add(
+    let deliveryDate = today.add(
         deliveryOption.deliveryDays,
         'days'
     );
+
+    //do not deliver on saturday and sunday
+    if(deliveryDate.day() == 6 || deliveryDate.day() == 0) {
+        deliveryDate = deliveryDate.add(1,'days');
+    }
     const dateString = deliveryDate.format(
         'dddd, MMMM D'
     );
@@ -215,7 +220,7 @@ document.querySelectorAll('.update-quantity-link')
             renderPaymentSummary();
         });
     });
-});
+}); 
 
 updatecheckoutHeader();
 
