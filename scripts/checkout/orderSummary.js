@@ -220,7 +220,7 @@ document.querySelectorAll('.update-quantity-link')
             renderPaymentSummary();
         });
     });
-});
+}); 
 
 updatecheckoutHeader();
 
