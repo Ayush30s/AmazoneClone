@@ -10,13 +10,18 @@ import { updatecheckoutHeader } from "../../data/cart.js";
 
 function Showdate(deliveryOption) {
     const today = dayjs();
-    const deliveryDate = today.add(
+    let deliveryDate = today.add(
         deliveryOption.deliveryDays,
         'days'
     );
-    const dateString = deliveryDate.format(
-        'dddd, MMMM D'
-    );
+
+    // do not deliver on Saturday and Sunday
+    if (deliveryDate.day() === 6 || deliveryDate.day() === 0) {
+        // Change delivery to Monday
+        deliveryDate = deliveryDate.day(1); // Setting to Monday
+    }
+
+    const dateString = deliveryDate.format('dddd, MMMM D');
 
     return dateString;
 }
