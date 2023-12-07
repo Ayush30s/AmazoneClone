@@ -673,3 +673,21 @@ export const products = [
     ]
   }
 ];
+
+export function searchProduct(products) {
+  //fetching data from search bar
+  const productName = document.querySelector('.search-bar').value;
+  products.forEach((product) => {
+    if(productName === product.name) {
+
+      //creating an anchor tag and appending it inside the div
+      document.getElementById(`${product.id}`).classList.add('tagged');
+      const anchorTag = document.createElement("a");
+      setTimeout(() => {
+        document.getElementById(`${product.id}`).classList.remove('tagged');
+      },2000);
+      anchorTag.href = `#${product.id}`;
+      anchorTag.click();
+    }
+  }); 
+}

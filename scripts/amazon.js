@@ -1,12 +1,12 @@
 import {cart , addToCart} from '../data/cart.js';
-import {products} from '../data/products.js';
-import { formatCurrency } from './utils/money.js';
+import {products , searchProduct} from '../data/products.js';
+import {formatCurrency} from './utils/money.js';
 
 let productsHTML = ' ';
 
 products.forEach((product) => {
     productsHTML += `
-    <div class="product-container ">
+    <div class="product-container" id = "${product.id}">
         <div class="product-image-container">
         <img class="product-image"
             src= ${product.image}>
@@ -97,3 +97,6 @@ document.querySelectorAll('.js-add-to-cart')
 
 let quantity = localStorage.getItem('q');
 document.querySelector('.js-cart-quantity').innerHTML = Number(quantity);
+document.querySelector('.search-button').addEventListener('click' , () => {
+    searchProduct(products);
+})
